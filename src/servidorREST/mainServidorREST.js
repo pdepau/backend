@@ -1,3 +1,10 @@
+/**
+ *
+ * AUTOR: Pau Blanes Climent
+ * FECHA: 17/10/2021
+ * DESCRIPCION: clase para la gestion del servidor REST
+ *
+ */
 // .....................................................................
 // mainServidorREST.js
 // .....................................................................

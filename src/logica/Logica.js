@@ -1,3 +1,10 @@
+/**
+ *
+ * AUTOR: Pau Blanes Climent
+ * FECHA: 17/10/2021
+ * DESCRIPCION: clase La comunicacion con el cliente
+ *
+ */
 // .....................................................................
 // Logica.js
 // .....................................................................
@@ -45,8 +52,8 @@ module.exports = class Logica {
 // insertarMedicion() -->
 // .................................................................
     insertarMedicion( datos ) {
-        var textoSQL = "insert into Medicion values( $co2, $fecha)";
-var valoresParaSQL = { $co2: datos.co2, $nombre: datos.fecha}
+        var textoSQL = 'insert into Medicion ("co2","fecha","latitud","longitud") values( $co2, $fecha, $latitud, $longitud)';
+var valoresParaSQL = { $co2: datos.co2, $fecha: datos.fecha, $latitud: datos.latitud,$longitud:datos.longitud}
         return new Promise( (resolver, rechazar) => {
             this.laConexion.run( textoSQL, valoresParaSQL, function( err ) {
                 ( err ? rechazar(err) : resolver() )
@@ -55,7 +62,7 @@ var valoresParaSQL = { $co2: datos.co2, $nombre: datos.fecha}
     } // ()
 
     obtenerUltimasMediciones(cuantos){
-        var textoSQL = "select * from Medicion limit $cuantos";
+        var textoSQL = "select * from Medicion ORDER BY fecha DESC LIMIT $cuantos";
         var valoresParaSQL = { $cuantos: cuantos }
         return new Promise( (resolver, rechazar) => {
             this.laConexion.all( textoSQL, valoresParaSQL,
